@@ -1,1 +1,1 @@
-# psycopg2-tutorial
+# Psycopg2 Tutorial
