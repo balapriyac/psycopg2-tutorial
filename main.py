@@ -25,11 +25,11 @@ try:
                           name varchar(50) NOT NULL,
                           city varchar(40),
                           profession varchar(60));'''
-    db_cursor.execute('DROP TABLE IF EXISTS people;') # if running multiple times, drop table and create a new one for each run.
+    db_cursor.execute("DROP TABLE IF EXISTS people;") # if running multiple times, drop table and create a new one for each run.
     db_cursor.execute(create_table)
     
     # insert record
-    insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);'
+    insert_record = "INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);"
     insert_value = ('Jane Lee','RustMore','Rust programmer')
     db_cursor.execute(insert_record, insert_value)
     
@@ -39,7 +39,7 @@ try:
         db_cursor.execute(insert_record,record)
         
     # retrieve records
-    db_cursor.execute('SELECT * FROM people')
+    db_cursor.execute("SELECT * FROM people;")
     print(db_cursor.fetchone())
     for record in db_cursor.fetchmany(10):
         print(record)
@@ -52,12 +52,12 @@ try:
     print(db_cursor.fetchall())
     
     # update records
-    update_query = 'UPDATE people SET city=%s WHERE city=%s;'
+    update_query = "UPDATE people SET city=%s WHERE city=%s;"
     values = ('Mathville','Johnsonmouth')
     db_cursor.execute(update_query,values)
     
     # delete records
-    delete_record = 'DELETE FROM people WHERE city=%s;'
+    delete_record = "DELETE FROM people WHERE city=%s;"
     record = ('Mathville',)
     db_cursor.execute(delete_record,record)
     
