@@ -24,26 +24,26 @@ try:
             db_cursor.execute(create_table)
             
         # Insert one record
-        with db_connection.cursor() as db_cursor:
+        
             insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);'
             insert_value = ('Jane Lee','RustMore','Rust programmer')
             db_cursor.execute(insert_record, insert_value)
             
         # Insert multiple records
-        with db_connection.cursor() as db_cursor:
+        
             records = tuple(generate_fake_data(100))
             for record in records:
                 db_cursor.execute(insert_record,record)
                 
         # Retrieve data from the table
-        with db_connection.cursor() as db_cursor:
+        
                 db_cursor.execute('SELECT * FROM people')
                 print(db_cursor.fetchone())
                 for record in db_cursor.fetchmany(10):
                     print(record)
                 for record in db_cursor.fetchall():
                     print(record)
-        with db_connection.cursor() as db_cursor:
+        
             get_count ='''SELECT city, COUNT(*)
                   FROM people
                   GROUP BY city HAVING COUNT(*)>1;'''
@@ -51,13 +51,13 @@ try:
             print(db_cursor.fetchall())
             
         # Update records
-        with db_connection.cursor() as db_cursor:
+        
             update_query = 'UPDATE people SET city=%s WHERE city=%s;'
             values = ('Mathville','Johnsonmouth')
             db_cursor.execute(update_query,values)
             
         # Delete records
-        with db_connection.cursor() as db_cursor:
+        
             delete_record = 'DELETE FROM people WHERE city=%s;'
             record = ('Mathville',)
             db_cursor.execute(delete_record,record)
