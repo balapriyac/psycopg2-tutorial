@@ -52,6 +52,7 @@ try:
     db_cursor.execute(get_city_count)
     print(db_cursor.fetchone())
     db_cursor.close()
+    
 except OperationalError:
     print("Error connecting to the database :/")
 
