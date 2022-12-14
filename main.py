@@ -20,10 +20,10 @@ try:
                           id SERIAL PRIMARY KEY,
                           name varchar(50) NOT NULL,
                           city varchar(40),
-                          profession varchar(60))'''
-    db_cursor.execute('DROP TABLE IF EXISTS people')
+                          profession varchar(60));'''
+    db_cursor.execute('DROP TABLE IF EXISTS people;')
     db_cursor.execute(create_table)
-    insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s)'
+    insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);'
     insert_value = ('Jane Lee','RustMore','Rust programmer')
     db_cursor.execute(insert_record, insert_value)
     records = tuple(generate_fake_data(100))
@@ -37,21 +37,21 @@ try:
         print(record)
     get_count ='''SELECT city, COUNT(*)
                   FROM people
-                  GROUP BY city HAVING COUNT(*)>1'''
+                  GROUP BY city HAVING COUNT(*)>1;'''
     db_cursor.execute(get_count)
     print(db_cursor.fetchall())
-    update_query = 'UPDATE people SET city=%s WHERE city=%s'
+    update_query = 'UPDATE people SET city=%s WHERE city=%s;'
     values = ('Mathville','Johnsonmouth')
     db_cursor.execute(update_query,values)
 
-    delete_record = 'DELETE FROM people WHERE city=%s'
+    delete_record = 'DELETE FROM people WHERE city=%s;'
     record = ('Mathville',)
     db_cursor.execute(delete_record,record)
     get_city_count = '''SELECT COUNT(DISTINCT city)
-                        FROM people'''
+                        FROM people;'''
     db_cursor.execute(get_city_count)
     print(db_cursor.fetchone())
-    
+    db_cursor.close()
 except OperationalError:
     print("Error connecting to the database :/")
 
