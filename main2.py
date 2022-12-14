@@ -19,13 +19,13 @@ try:
                           id SERIAL PRIMARY KEY,
                           name varchar(50) NOT NULL,
                           city varchar(40),
-                          profession varchar(60))'''
-            db_cursor.execute('DROP TABLE IF EXISTS people')
+                          profession varchar(60));'''
+            db_cursor.execute('DROP TABLE IF EXISTS people;')
             db_cursor.execute(create_table)
             
         # Insert one record
         with db_connection.cursor() as db_cursor:
-            insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s)'
+            insert_record = 'INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);'
             insert_value = ('Jane Lee','RustMore','Rust programmer')
             db_cursor.execute(insert_record, insert_value)
             
@@ -46,19 +46,19 @@ try:
         with db_connection.cursor() as db_cursor:
             get_count ='''SELECT city, COUNT(*)
                   FROM people
-                  GROUP BY city HAVING COUNT(*)>1'''
+                  GROUP BY city HAVING COUNT(*)>1;'''
             db_cursor.execute(get_count)
             print(db_cursor.fetchall())
             
         # Update records
         with db_connection.cursor() as db_cursor:
-            update_query = 'UPDATE people SET city=%s WHERE city=%s'
+            update_query = 'UPDATE people SET city=%s WHERE city=%s;'
             values = ('Mathville','Johnsonmouth')
             db_cursor.execute(update_query,values)
             
         # Delete records
         with db_connection.cursor() as db_cursor:
-            delete_record = 'DELETE FROM people WHERE city=%s'
+            delete_record = 'DELETE FROM people WHERE city=%s;'
             record = ('Mathville',)
             db_cursor.execute(delete_record,record)
             
