@@ -10,12 +10,12 @@ section='postgres-sample-db'
 
 db_info = get_db_info(filename,section)
 # print(db_info)
-connection = None
+db_connection = None
 try:
-    connection = psycopg2.connect(**db_info)
+    db_connection = psycopg2.connect(**db_info)
     print("Successfully connected to the database.")
-    connection.autocommit=True
-    db_cursor = connection.cursor()
+    db_connection.autocommit=True
+    db_cursor = db_connection.cursor()
     create_table = '''CREATE TABLE people(
                           id SERIAL PRIMARY KEY,
                           name varchar(50) NOT NULL,
@@ -51,12 +51,13 @@ try:
                         FROM people;'''
     db_cursor.execute(get_city_count)
     print(db_cursor.fetchone())
-    db_cursor.close()
     
 except OperationalError:
     print("Error connecting to the database :/")
 
 finally:
-    if connection:
-        connection.close()
+    if db_connection:
+        db_connection.close()
         print("Closed connection.")
+    if db_cursor:
+        db_cursor.close()
