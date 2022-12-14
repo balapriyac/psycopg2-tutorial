@@ -56,8 +56,8 @@ except OperationalError:
     print("Error connecting to the database :/")
 
 finally:
+    if db_cursor:
+        db_cursor.close()
     if db_connection:
         db_connection.close()
         print("Closed connection.")
-    if db_cursor:
-        db_cursor.close()
