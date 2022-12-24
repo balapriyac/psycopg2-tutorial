@@ -30,7 +30,7 @@ try:
     
     # insert record
     insert_record = "INSERT INTO people (name,city,profession) VALUES (%s, %s, %s);"
-    insert_value = ('Jane Lee','RustMore','Rust programmer')
+    insert_value = ('Jane Lee','Rustmore','Rust programmer')
     db_cursor.execute(insert_record, insert_value)
     
     # insert multiple records
